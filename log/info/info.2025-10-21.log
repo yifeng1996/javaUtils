@@ -1,0 +1,46 @@
+2025-10-21 14:34:23 INFO  main com.weng.system.JavaUtilsApplication Starting JavaUtilsApplication on LAPTOP-1DCAR7C2 with PID 13976 (E:\JavaOwnIdea\javaUtils\target\classes started by 23621 in E:\JavaOwnIdea\javaUtils)
+2025-10-21 14:34:23 INFO  main com.weng.system.JavaUtilsApplication The following profiles are active: dev
+2025-10-21 14:34:25 INFO  main org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-10-21 14:34:25 INFO  main org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data repositories in DEFAULT mode.
+2025-10-21 14:34:25 INFO  main org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 19ms. Found 0 repository interfaces.
+2025-10-21 14:34:25 INFO  main org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-10-21 14:34:25 INFO  main org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$9e4ed7d8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-10-21 14:34:25 INFO  main org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-10-21 14:34:25 INFO  main org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-10-21 14:34:25 INFO  main org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-10-21 14:34:26 INFO  main org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 8080 (http)
+2025-10-21 14:34:26 INFO  main org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-21 14:34:26 INFO  main org.apache.catalina.core.StandardService Starting service [Tomcat]
+2025-10-21 14:34:26 INFO  main org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.27]
+2025-10-21 14:34:26 INFO  main org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/javaUtils] Initializing Spring embedded WebApplicationContext
+2025-10-21 14:34:26 INFO  main org.springframework.web.context.ContextLoader Root WebApplicationContext: initialization completed in 2479 ms
+2025-10-21 14:34:26 INFO  main com.baomidou.dynamic.datasource.DynamicRoutingDataSource dynamic-datasource detect P6SPY plugin and enabled it
+2025-10-21 14:34:26 INFO  main com.zaxxer.hikari.HikariDataSource base - Starting...
+2025-10-21 14:34:27 INFO  main com.zaxxer.hikari.HikariDataSource base - Start completed.
+2025-10-21 14:34:27 INFO  main com.zaxxer.hikari.HikariDataSource quartz - Starting...
+2025-10-21 14:34:27 INFO  main com.zaxxer.hikari.HikariDataSource quartz - Start completed.
+2025-10-21 14:34:27 INFO  main com.baomidou.dynamic.datasource.DynamicRoutingDataSource dynamic-datasource - load a datasource named [quartz] success
+2025-10-21 14:34:27 INFO  main com.baomidou.dynamic.datasource.DynamicRoutingDataSource dynamic-datasource - load a datasource named [base] success
+2025-10-21 14:34:27 INFO  main com.baomidou.dynamic.datasource.DynamicRoutingDataSource dynamic-datasource initial loaded [2] datasource,primary datasource named [base]
+2025-10-21 14:34:32 INFO  main org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService
+2025-10-21 14:34:32 INFO  main org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'AsyncThreadPool'
+2025-10-21 14:34:33 INFO  main org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver Exposing 2 endpoint(s) beneath base path '/actuator'
+2025-10-21 14:34:35 INFO  main org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer running container: DefaultRocketMQListenerContainer{consumerGroup='java_utils_batch_test', nameServer='192.168.1.208:9876', topic='java_utils_batch_test', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2025-10-21 14:34:35 INFO  main org.apache.rocketmq.spring.autoconfigure.ListenerContainerConfiguration Register the listener to container, listenerBeanName:yuqingTraditionalmediaConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2025-10-21 14:34:35 INFO  main org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-8080"]
+2025-10-21 14:34:35 INFO  main org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 8080 (http) with context path '/javaUtils'
+2025-10-21 14:34:35 INFO  main com.weng.system.JavaUtilsApplication Started JavaUtilsApplication in 12.426 seconds (JVM running for 13.842)
+2025-10-21 14:34:40 INFO  NettyClientSelector_1 RocketmqRemoting closeChannel: close the connection to remote address[192.168.1.208:10911] result: true
+2025-10-21 14:34:40 INFO  NettyClientSelector_1 RocketmqRemoting closeChannel: close the connection to remote address[192.168.1.208:9876] result: true
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer container destroyed, DefaultRocketMQListenerContainer{consumerGroup='java_utils_batch_test', nameServer='192.168.1.208:9876', topic='java_utils_batch_test', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'AsyncThreadPool'
+2025-10-21 14:34:40 INFO  NettyClientSelector_1 RocketmqRemoting closeChannel: close the connection to remote address[192.168.1.208:10911] result: true
+2025-10-21 14:34:40 INFO  NettyClientSelector_1 RocketmqRemoting closeChannel: close the connection to remote address[192.168.1.208:9876] result: true
+2025-10-21 14:34:40 INFO  NettyClientSelector_1 RocketmqRemoting closeChannel: close the connection to remote address[192.168.1.208:9876] result: true
+2025-10-21 14:34:40 INFO  NettyClientSelector_1 RocketmqRemoting closeChannel: close the connection to remote address[192.168.1.208:10911] result: true
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook com.baomidou.dynamic.datasource.DynamicRoutingDataSource dynamic-datasource start closing ....
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook com.zaxxer.hikari.HikariDataSource quartz - Shutdown initiated...
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook com.zaxxer.hikari.HikariDataSource quartz - Shutdown completed.
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook com.zaxxer.hikari.HikariDataSource base - Shutdown initiated...
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook com.zaxxer.hikari.HikariDataSource base - Shutdown completed.
+2025-10-21 14:34:40 INFO  SpringContextShutdownHook com.baomidou.dynamic.datasource.DynamicRoutingDataSource dynamic-datasource all closed success,bye

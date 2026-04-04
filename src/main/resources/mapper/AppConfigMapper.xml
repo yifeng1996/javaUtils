@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weng.system.mapper.AppConfigMapper">
+    <resultMap id="BaseResultMap" type="com.weng.system.entity.AppConfig">
+       <result column="app_config_id" jdbcType="BIGINT" property="appConfigId" />
+       <result column="config_desc" jdbcType="VARCHAR" property="configDesc" />
+       <result column="config_name" jdbcType="VARCHAR" property="configName" />
+       <result column="config_value" jdbcType="VARCHAR" property="configValue" />
+       <result column="creater_id" jdbcType="BIGINT" property="createrId" />
+       <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+       <result column="creater_user_name" jdbcType="VARCHAR" property="createrUserName" />
+    </resultMap>
+</mapper>
