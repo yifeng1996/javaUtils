@@ -1,17 +1,13 @@
-package com.weng.system.controller;
+package com.weng.system.script;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 
 /**
- * @ClassName MavenJarController
- * @Description: TODO
- * @Author weng.yifeng
- * @Date 2022/8/8 16:56
- * @Version V1.0
- **/
-public class MavenJarController {
+ * 扫描 lib 目录并生成 Maven system 依赖片段的独立脚本。
+ */
+public class MavenDependencyGenerator {
 
     private static String pomDependency = "<dependency>\n" +
             "\t<groupId>%s</groupId>\n" +

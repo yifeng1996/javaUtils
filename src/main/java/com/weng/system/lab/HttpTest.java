@@ -1,4 +1,4 @@
-package com.weng.system.test;
+package com.weng.system.lab;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

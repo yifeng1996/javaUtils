@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@RocketMQMessageListener(
+/*@RocketMQMessageListener(
         nameServer = "${rocketmq.nameserver}",
         consumerGroup = RocketMQConstant.TOPIC_JAVA_UTILS_BATCH_TEST_GROUP,
         topic = RocketMQConstant.TOPIC_JAVA_UTILS_BATCH_TEST,
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
         selectorType = SelectorType.TAG
         // 消费 tag 的数据
 //        selectorExpression = "tag"
-)
+)*/
 public class YuqingTraditionalmediaConsumer implements RocketMQListener<String>, RocketMQPushConsumerLifecycleListener {
     @Override
     public void onMessage(String message) {

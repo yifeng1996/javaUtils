@@ -1,4 +1,4 @@
-package com.weng.system.test;
+package com.weng.system.lab;
 
 import com.weng.system.common.utils.IPUtils;
 import org.apache.commons.lang3.StringUtils;

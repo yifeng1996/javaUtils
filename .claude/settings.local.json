@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(claude plugins:*)",
-      "WebSearch",
-      "Skill(claude-hud:setup)"
-    ]
-  }
-}

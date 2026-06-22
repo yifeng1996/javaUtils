@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.dom4j.Attribute;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
@@ -11,103 +12,92 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @ Description   :  xml数据转成json格式
- * @ Author        :  yifeng
- * @ CreateDate    :  2019/9/23 10:47
- * @ Version       :  1.0
+ * XML 数据转 JSON 工具类
+ *
+ * <p>转换规则：
+ * <ul>
+ *   <li>元素的属性以 {@code @} 前缀映射，如 {@code <name id="1"/>} → {@code {"@id":"1"}}</li>
+ *   <li>元素的文本内容以 {@code #text} 为键映射，如 {@code <name>张三</name>} → {@code {"#text":"张三"}}</li>
+ *   <li>同名同级元素自动合并为 JSONArray</li>
+ * </ul>
+ *
+ * @author yifeng
+ * @since 2019/9/23
+ * @version 3.0
  */
 public class XmlToJsonUtil {
 
-    public static JSONObject xmltoJson(String xml) throws Exception {
-        JSONObject jsonObject = new JSONObject();
-        Document document = DocumentHelper.parseText(xml);
-        //获取根节点元素对象
-        Element root = document.getRootElement();
-        iterateNodes(root, jsonObject);
-        return jsonObject;
-    }
-    /**
-     * 遍历元素
-     * @param node 元素
-     * @param json 将元素遍历完成之后放的JSON对象
-     */
-    @SuppressWarnings("unchecked")
-    public static void iterateNodes(Element node,JSONObject json){
-        //获取当前元素的名称
-        String nodeName = node.getName();
-        //判断已遍历的JSON中是否已经有了该元素的名称
-        if(json.containsKey(nodeName)){
-            //该元素在同级下有多个
-            Object Object = json.get(nodeName);
-            JSONArray array = null;
-            if(Object instanceof JSONArray){
-                array = (JSONArray) Object;
-            }else {
-                array = new JSONArray();
-                array.add(Object);
-            }
-            //获取该元素下所有子元素
-            List<Element> listElement = node.elements();
-            //获取该元素下所有属性
-            List<Attribute> attributes = node.attributes();
-            JSONObject attributeMap = new JSONObject();
-            for (Attribute attribute : attributes){
-                String attributeName = attribute.getName();
-                Object attributeData = attribute.getData();
-                attributeMap.put(attributeName,attributeData);
-            }
-            if(listElement.isEmpty()){
-                //该元素无子元素，获取元素的值
-                array.add(attributeMap);
-                json.put(nodeName, array);
-                return ;
-            }
-            //有子元素
-            JSONObject newJson = new JSONObject();
-            //遍历所有子元素
-            for(Element e:listElement){
-                //递归
-                iterateNodes(e,newJson);
-            }
-            newJson.putAll(attributeMap);
-            array.add(newJson);
-            json.put(nodeName, array);
-            return ;
-        }
-        //该元素同级下第一次遍历
-        //获取该元素下所有子元素
-        List<Element> listElement = node.elements();
-        //获取该元素下所有属性
-        List<Attribute> attributes = node.attributes();
-        JSONObject attributeMap = new JSONObject();
-        for (Attribute attribute : attributes){
-            String attributeName = attribute.getName();
-            Object attributeData = attribute.getData();
-            attributeMap.put(attributeName,attributeData);
-        }
-        if(listElement.isEmpty()){
-            //该元素无子元素，获取元素的属性值
-            json.put(nodeName, attributeMap);
-            return ;
-        }
-        //有子节点，新建一个JSONObject来存储该节点下子节点的值
-        JSONObject object = new JSONObject();
-        //遍历所有一级子节点
-        for(Element e:listElement){
-            //递归
-            iterateNodes(e,object);
-        }
-        attributeMap.putAll(object);
-        json.put(nodeName, attributeMap);
-        return ;
+    private XmlToJsonUtil() {
+        // 工具类禁止实例化
     }
 
     /**
-     * 测试
+     * XML 字符串转为 JSONObject
+     *
+     * @param xml XML 字符串，不能为 null 或空
+     * @return JSONObject
+     * @throws IllegalArgumentException 当 xml 为 null/空，或解析失败时抛出
      */
-    public static void main(String[] args) throws Exception {
-        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <数据 类型=\"城市AQI实时报\" 开始时间=\"2019-10-10 00\" 结束时间=\"2019-10-10 23\"><省 名称=\"浙江\"><地区 名称=\"杭州\" 编码=\"330100\"><城市 名称=\"杭州市\" 编码=\"330101\"><实况 时间=\"2019-10-10 03\" 空气质量状况=\"良\" 空气质量等级=\"二级\" 污染指数=\"80\" 首要污染物=\"PM2.5\" SO2DATA=\"6.0\" SO2IAQI=\"\" NO2DATA=\"58.0\" NO2IAQI=\"\" PM10DATA=\"93.0\" PM10IAQI=\"\" PM25DATA=\"59.0\" PM25IAQI=\"\" CODATA=\"1.1\" COIAQI=\"\" O31DATA=\"4.0\" O31IAQI=\"\"/><实况 时间=\"2019-10-10 04\" 空气质量状况=\"良\" 空气质量等级=\"二级\" 污染指数=\"82\" 首要污染物=\"PM2.5\" SO2DATA=\"6.0\" SO2IAQI=\"\" NO2DATA=\"55.0\" NO2IAQI=\"\" PM10DATA=\"104.0\" PM10IAQI=\"\" PM25DATA=\"60.0\" PM25IAQI=\"\" CODATA=\"1.1\" COIAQI=\"\" O31DATA=\"4.0\" O31IAQI=\"\"/><实况 时间=\"2019-10-10 05\" 空气质量状况=\"良\" 空气质量等级=\"二级\" 污染指数=\"80\" 首要污染物=\"PM2.5\" SO2DATA=\"7.0\" SO2IAQI=\"\" NO2DATA=\"52.0\" NO2IAQI=\"\" PM10DATA=\"108.0\" PM10IAQI=\"\" PM25DATA=\"59.0\" PM25IAQI=\"\" CODATA=\"1.2\" COIAQI=\"\" O31DATA=\"4.0\" O31IAQI=\"\"/><实况 时间=\"2019-10-10 06\" 空气质量状况=\"良\" 空气质量等级=\"二级\" 污染指数=\"80\" 首要污染物=\"PM2.5\" SO2DATA=\"7.0\" SO2IAQI=\"\" NO2DATA=\"48.0\" NO2IAQI=\"\" PM10DATA=\"104.0\" PM10IAQI=\"\" PM25DATA=\"59.0\" PM25IAQI=\"\" CODATA=\"1.2\" COIAQI=\"\" O31DATA=\"6.0\" O31IAQI=\"\"/><实况 时间=\"2019-10-10 07\" 空气质量状况=\"良\" 空气质量等级=\"二级\" 污染指数=\"87\" 首要污染物=\"PM2.5\" SO2DATA=\"7.0\" SO2IAQI=\"\" NO2DATA=\"51.0\" NO2IAQI=\"\" PM10DATA=\"107.0\" PM10IAQI=\"\" PM25DATA=\"64.0\" PM25IAQI=\"\" CODATA=\"1.2\" COIAQI=\"\" O31DATA=\"13.0\" O31IAQI=\"\"/><实况 时间=\"2019-10-10 08\" 空气质量状况=\"良\" 空气质量等级=\"二级\" 污染指数=\"90\" 首要污染物=\"PM2.5\" SO2DATA=\"8.0\" SO2IAQI=\"\" NO2DATA=\"56.0\" NO2IAQI=\"\" PM10DATA=\"106.0\" PM10IAQI=\"\" PM25DATA=\"67.0\" PM25IAQI=\"\" CODATA=\"1.3\" COIAQI=\"\" O31DATA=\"28.0\" O31IAQI=\"\"/></城市></地区></省></数据>";
-        JSONObject jsonObject = xmltoJson(xml);
-        System.out.println(jsonObject);
+    public static JSONObject xmltoJson(String xml) {
+        if (xml == null || xml.trim().isEmpty()) {
+            throw new IllegalArgumentException("XML 内容不能为 null 或空");
+        }
+        try {
+            Document document = DocumentHelper.parseText(xml);
+            Element root = document.getRootElement();
+            JSONObject result = new JSONObject();
+            result.put(root.getName(), buildJsonFromElement(root));
+            return result;
+        } catch (DocumentException e) {
+            throw new IllegalArgumentException("XML 解析失败: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 从单个元素构建 JSONObject
+     */
+    private static JSONObject buildJsonFromElement(Element node) {
+        JSONObject json = new JSONObject();
+        // 1. 放入属性（@ 前缀）
+        putAttributes(node, json);
+        // 2. 放入子元素
+        List<Element> children = node.elements();
+        for (Element child : children) {
+            putChildNode(json, child);
+        }
+        // 3. 放入文本内容（#text）
+        String text = node.getTextTrim();
+        if (!text.isEmpty()) {
+            json.put("#text", text);
+        }
+        return json;
+    }
+
+    /**
+     * 将子元素放入父 JSON 中，同名元素自动合并为 JSONArray
+     */
+    private static void putChildNode(JSONObject parent, Element child) {
+        String name = child.getName();
+        JSONObject childJson = buildJsonFromElement(child);
+        Object existing = parent.get(name);
+        if (existing == null) {
+            parent.put(name, childJson);
+        } else if (existing instanceof JSONArray) {
+            ((JSONArray) existing).add(childJson);
+        } else {
+            JSONArray array = new JSONArray();
+            array.add(existing);
+            array.add(childJson);
+            parent.put(name, array);
+        }
+    }
+
+    /**
+     * 将元素的所有属性放入 JSON，键名加 {@code @} 前缀
+     */
+    private static void putAttributes(Element node, JSONObject json) {
+        for (Attribute attr : node.attributes()) {
+            json.put("@" + attr.getName(), attr.getValue());
+        }
     }
 }

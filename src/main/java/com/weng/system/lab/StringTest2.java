@@ -1,4 +1,4 @@
-package com.weng.system.test;
+package com.weng.system.lab;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.google.common.base.Joiner;

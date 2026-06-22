@@ -1,4 +1,4 @@
-package com.lyc.test;
+package com.weng.system.lab;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

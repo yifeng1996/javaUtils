@@ -1,17 +1,13 @@
-package com.weng.system.controller;
+package com.weng.system.script;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 
 /**
- * @ClassName RegionDataController
- * @Description: TODO
- * @Author weng.yifeng
- * @Date 2022/8/8 16:56
- * @Version V1.0
- **/
-public class RegionDataController {
+ * 从 regionData.properties 批量生成地域 SQL 的独立脚本。
+ */
+public class RegionSqlGenerator {
 
     private static String sql = "INSERT INTO `wznetdigitalmanage`.`region`(`region_id`, `name`, `parent_id`, `order_num`, `deleted`, `region_code`) VALUES (%s, '%s', %s, NULL, 0, '%s');";
 

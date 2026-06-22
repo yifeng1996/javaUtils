@@ -29,3 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
+.claude/
+
+### runtime logs ###
+log/

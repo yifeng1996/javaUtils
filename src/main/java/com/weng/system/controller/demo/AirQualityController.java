@@ -1,4 +1,4 @@
-package com.weng.system.controller;
+package com.weng.system.controller.demo;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
